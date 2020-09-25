@@ -25,18 +25,14 @@
                             <div class="text-center">
                                 <th:block th:if="${notFound}">
                                     <small class="text-danger col-12 text-center">Incorrect username or password</small>
-                                    <br/>
                                 </th:block>
                                 <th:block th:each="e : ${#fields.errors()}">
-                                    <small th:text="${e}" class="text-danger col-12 text-center">asasdasfasfafs </small>
-                                    <br/>
-                                    </hr>
+                                    <small th:text="${e}" class="text-danger m-2 col-12 text-center">asasdasfasfafs </small>
                                 </th:block>
                             </div>
-                            <hr/>
                             <div class="input-group">
                                 <label for="username" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Username</label>
-                                <input th:field="*{username}" name="username" type="text"
+                                <input th:field="*{username}" th:errorclass="bg-warning" name="username" type="text"
                                        class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
                                        id="username" placeholder="Username" required>
                             </div>

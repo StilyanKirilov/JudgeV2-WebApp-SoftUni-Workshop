@@ -3,6 +3,7 @@ package softuni.workshopjudge2.model.binding;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class UserAddBindingModel {
@@ -42,7 +43,7 @@ public class UserAddBindingModel {
         this.confirmPassword = confirmPassword;
     }
 
-    @Email
+    @Email(message = "Enter valid email!")
     public String getEmail() {
         return email;
     }
@@ -51,7 +52,7 @@ public class UserAddBindingModel {
         this.email = email;
     }
 
-    @Pattern(regexp = "https://github\\.com/.+",message = "Enter git address following this pattern!")
+    @Pattern(regexp = "https://github\\.com/.+",message = "Enter valid git address!")
     public String getGit() {
         return git;
     }

@@ -2,6 +2,7 @@ package softuni.workshopjudge2.model.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "homework")
@@ -11,11 +12,12 @@ public class Homework extends BaseEntity {
     private String gitAddress;
     private User author;
     private Exercise exercise;
+    private Set<Comment> comments;
 
     public Homework() {
     }
 
-    @Column(name = "added_on",nullable = false)
+    @Column(name = "added_on", nullable = false)
     public LocalDateTime getAddedOn() {
         return addedOn;
     }
@@ -24,7 +26,7 @@ public class Homework extends BaseEntity {
         this.addedOn = addedOn;
     }
 
-    @Column(name = "git_address",nullable = false,unique = true)
+    @Column(name = "git_address", nullable = false, unique = true)
     public String getGitAddress() {
         return gitAddress;
     }
@@ -49,5 +51,14 @@ public class Homework extends BaseEntity {
 
     public void setExercise(Exercise exercise) {
         this.exercise = exercise;
+    }
+
+    @OneToMany(mappedBy = "homework", fetch = FetchType.EAGER)
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }

@@ -22,7 +22,7 @@
                               class="tm-login-form">
                             <div class="input-group">
                                 <label for="username" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Username</label>
-                                <input th:field="*{username}" name="username" type="text"
+                                <input th:field="*{username}" th:errorclass="bg-danger" name="username" type="text"
                                        class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7"
                                        id="username" placeholder="Enter username">
                                 <th:block th:each="e : ${#fields.errors('username')}">
@@ -33,7 +33,7 @@
                             </div>
                             <div class="input-group mt-3">
                                 <label for="password" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Password</label>
-                                <input name="password" type="password" class="form-control validate"
+                                <input name="password" th:errorclass="bg-danger" type="password" class="form-control validate"
                                        id="password" placeholder="Enter password">
                             </div>
                             <th:block th:each="e : ${#fields.errors('password')}">
@@ -50,7 +50,7 @@
                             <div class="input-group mt-3">
                                 <label for="email"
                                        class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Email</label>
-                                <input th:field="*{email}" name="email" type="email" class="form-control validate"
+                                <input th:field="*{email}" th:errorclass="bg-danger" name="email" type="email" class="form-control validate"
                                        id="email" placeholder="Enter email">
                             </div>
                             <th:block th:each="e : ${#fields.errors('email')}">
@@ -60,7 +60,7 @@
                             </th:block>
                             <div class="input-group mt-3">
                                 <label for="git" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Git</label>
-                                <input th:field="*{git}" name="git" type="text" class="form-control validate" id="git"
+                                <input th:field="*{git}" th:errorclass="bg-danger" name="git" type="text" class="form-control validate" id="git"
                                        placeholder="Enter git">
                             </div>
                             <th:block th:each="e : ${#fields.errors('git')}">

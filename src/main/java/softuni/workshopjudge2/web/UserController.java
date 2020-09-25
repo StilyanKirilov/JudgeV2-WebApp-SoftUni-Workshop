@@ -3,16 +3,15 @@ package softuni.workshopjudge2.web;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import softuni.workshopjudge2.model.binding.UserAddBindingModel;
 import softuni.workshopjudge2.model.binding.UserLoginBindingModel;
 import softuni.workshopjudge2.model.service.UserServiceModel;
+import softuni.workshopjudge2.model.view.UserProfileViewModel;
 import softuni.workshopjudge2.service.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -78,8 +77,6 @@ public class UserController {
     public ModelAndView registerConfirm(@Valid @ModelAttribute("userAddBindingModel")
                                                 UserAddBindingModel userAddBindingModel,
                                         BindingResult bindingResult, ModelAndView modelAndView, RedirectAttributes redirectAttributes) {
-
-
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("userAddBindingModel", userAddBindingModel);
             modelAndView.setViewName("redirect:/users/register");
@@ -91,7 +88,18 @@ public class UserController {
     }
 
     @RequestMapping("/logout")
-    public void logoutUser(HttpSession httpSession) {
+    public String logoutUser(HttpSession httpSession) {
         httpSession.invalidate();
+        return "redirect:/";
+    }
+
+    @GetMapping("/profile")
+    public String profileUser(Model model, @RequestParam("id") String id) {
+        UserServiceModel byId = this.userService.findById(id);
+        UserProfileViewModel view = this.modelMapper
+                .map(byId, UserProfileViewModel.class);
+        model.addAttribute("user", view);
+
+        return "profile";
     }
 }
