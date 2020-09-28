@@ -1,9 +1,7 @@
 package softuni.workshopjudge2.model.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -14,6 +12,7 @@ public class User extends BaseEntity {
     private String email;
     private String git;
     private Role role;
+    private List<Homework> homeworks;
 
     public User() {
     }
@@ -60,5 +59,14 @@ public class User extends BaseEntity {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @OneToMany(mappedBy = "author",fetch = FetchType.EAGER)
+    public List<Homework> getHomeworks() {
+        return homeworks;
+    }
+
+    public void setHomeworks(List<Homework> homeworks) {
+        this.homeworks = homeworks;
     }
 }

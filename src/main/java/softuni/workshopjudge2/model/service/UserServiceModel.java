@@ -1,12 +1,15 @@
 package softuni.workshopjudge2.model.service;
 
-public class UserServiceModel extends BaseServiceModel{
+import java.util.List;
+
+public class UserServiceModel extends BaseServiceModel {
 
     private String username;
     private String password;
     private String email;
     private String git;
     private RoleServiceModel role;
+    private List<HomeworkServiceModel> homeworks;
 
     public UserServiceModel() {
     }
@@ -50,5 +53,13 @@ public class UserServiceModel extends BaseServiceModel{
 
     public void setRole(RoleServiceModel role) {
         this.role = role;
+    }
+
+    public List<HomeworkServiceModel> getHomeworks() {
+        return homeworks;
+    }
+
+    public void setHomeworks(List<HomeworkServiceModel> homeworks) {
+        this.homeworks = homeworks;
     }
 }

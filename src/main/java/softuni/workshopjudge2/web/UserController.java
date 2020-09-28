@@ -16,6 +16,7 @@ import softuni.workshopjudge2.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/users")
@@ -98,6 +99,11 @@ public class UserController {
         UserServiceModel byId = this.userService.findById(id);
         UserProfileViewModel view = this.modelMapper
                 .map(byId, UserProfileViewModel.class);
+        view.setHomeworks(byId.getHomeworks()
+                .stream()
+                .map(homework -> homework.getExercise().getName())
+                .collect(Collectors.joining(", ")));
+
         model.addAttribute("user", view);
 
         return "profile";

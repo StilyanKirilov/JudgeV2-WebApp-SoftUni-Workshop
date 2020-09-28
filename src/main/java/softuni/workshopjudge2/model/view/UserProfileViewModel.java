@@ -1,9 +1,12 @@
 package softuni.workshopjudge2.model.view;
 
+import java.util.List;
+
 public class UserProfileViewModel {
     private String username;
     private String email;
     private String git;
+    private String homeworks;
 
     public UserProfileViewModel() {
     }
@@ -30,5 +33,13 @@ public class UserProfileViewModel {
 
     public void setGit(String git) {
         this.git = git;
+    }
+
+    public String getHomeworks() {
+        return homeworks;
+    }
+
+    public void setHomeworks(String homeworks) {
+        this.homeworks = homeworks;
     }
 }

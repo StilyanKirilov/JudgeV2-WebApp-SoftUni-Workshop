@@ -3,6 +3,7 @@ package softuni.workshopjudge2.service.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import softuni.workshopjudge2.model.entity.Homework;
 import softuni.workshopjudge2.model.service.HomeworkServiceModel;
 import softuni.workshopjudge2.repository.HomeworkRepository;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 
 @Service
+@Transactional
 public class HomeworkServiceImpl implements HomeworkService {
 
     private final HomeworkRepository homeworkRepository;
